@@ -7,5 +7,9 @@
 }
 .container text {
   font-size: 24rpx;
-  color: #323232;
+  color: #bbbbbb;
+  line-height:24rpx;
+  position:relative;
+  bottom:10rpx;
+  left:6rpx; 
 }
