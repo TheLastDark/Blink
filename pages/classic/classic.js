@@ -1,5 +1,5 @@
 // pages/classic/classic.js
-import {HTTP} from '../../utils/http.js'
+import {HTTP} from '../../util/http.js'
 let http = new HTTP();
 Page({
 
