@@ -21,7 +21,7 @@ class HTTP {
         //只要接受到了响应吗就触发成功回调，即使没有拿到数据，要做个判断
         let code = res.statusCode.toString()
         if(code.startsWith('2')){
-          params.success(res.data)
+         params.success && params.success(res.data)
         }else{
           let error_code = res.data.error_code
           this._show_error(error_code)
