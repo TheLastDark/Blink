@@ -1,6 +1,10 @@
 // pages/classic/classic.js
-import {ClassicModel} from '../../models/classic.js'
-import {LikeModel} from '../../models/like.js'
+import {
+  ClassicModel
+} from '../../models/classic.js'
+import {
+  LikeModel
+} from '../../models/like.js'
 
 let classicModel = new ClassicModel()
 let likeModel = new LikeModel()
@@ -12,24 +16,56 @@ Page({
   data: {
     classic: null,
     latest: true,
-    first: false
+    first: false,
+    likeStatus: false,
+    likeCount: 0
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    classicModel.getLatest((res)=>{
-      console.log(res)
+    classicModel.getLatest((res) => {
+      // console.log(res)
       this.setData({
-        classic: res
+        classic: res,
+        likeCount: res.data.fav_nums,
+        likeStatus: res.data.like_status
       })
     })
   },
 
-  onLike: function(event) {
-    console.log(event)
+  onLike: function (event) {
     let behavior = event.detail.behavior
     likeModel.like(behavior, this.data.classic.id, this.data.classic.type)
+  },
+
+  // 切换期刊
+  onNext: function (event) {
+    this._updateClassic('next')
+  },
+
+  onPrevious: function (event) {
+    this._updateClassic('previous')
+  },
+  
+  _updateClassic: function (nextOrPrevious) {
+    let index = this.data.classic.data.index
+    classicModel.getClassic(index, nextOrPrevious, (res) => {
+      this._getLikeStatus(res.data.id,res.data.type)
+      this.setData({
+        classic: res,
+        latest: classicModel.isLatest(res.data.index),
+        first: classicModel.isFirst(res.data.index)
+      })
+    })
+  },
+  _getLikeStatus: function(ArtId, category) {
+    likeModel.getClassicLikeStatus(ArtId,category, (res)=> {
+      this.setData({
+        likeCount: res.fav_nums,
+        likeStatus: res.like_status
+      })
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
