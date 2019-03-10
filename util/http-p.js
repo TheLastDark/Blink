@@ -5,14 +5,16 @@ const tips = {
   3000: '期刊不存在'
 }
 class HTTP {
-  request(params) {
-    if(!params.method){
-      params.method = 'GET'
-    }
+  request({url,data={},method='GET'}){
+    return new Promise((resolve, reject)=> {
+      this._request(url, resolve, reject, data, method)
+    })
+  }
+  _request(url,resolve,reject,data={},method='GET') {
     wx.request({
-      url: config.app_base_url + params.url,
-      method: params.method,
-      data: params.data,
+      url: config.app_base_url + url,
+      method: method,
+      data,
       header: {
         'content-type': 'application/json',
         'appkey': config.appkey
@@ -21,13 +23,15 @@ class HTTP {
         //只要接受到了响应吗就触发成功回调，即使没有拿到数据，要做个判断
         let code = res.statusCode.toString()
         if(code.startsWith('2')){
-         params.success && params.success(res.data)
+          resolve(res.data)
         }else{
+          reject()
           let error_code = res.data.error_code
           this._show_error(error_code)
         }
       },
       fail:(err) => {
+        reject()
         this._show_error(1)
         // console.log(123)
       }
