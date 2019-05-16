@@ -1,0 +1,29 @@
+<view class='container'>
+  <view class='header'>
+    <view class='search-container'>
+      <image class='icon' src='images/search.png'></image>
+      <input auto-focus='true' class='bar' placeholder-class='in-bar' placeholder='书籍名称' bindconfirm="onConfirm"></input>
+      <image class='cancel-img'bind:tap="onDelete" src='images/cancel.png'></image>
+    </view>
+    <view class='cancel' bind:tap="cancel">取消</view>
+  </view>
+  <view>
+    <view class='history'>
+      <view class='title'>
+        <view class='chunk'></view>
+        <text>历史搜索</text>
+      </view>
+      <view class="tags">
+        <block wx:for="{{historyWords}}" wx:key="">
+          <v-tag class="tag-cmp" text="{{item}}"></v-tag>
+        </block>
+      </view>
+    </view>
+    <view class='history hot-search'>
+      <view class='title'>
+        <view class='chunk'></view>
+        <text>热门搜索</text>
+      </view>
+    </view>
+  </view>
+</view>

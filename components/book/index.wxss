@@ -19,7 +19,7 @@
   box-sizing: border-box;
   position: absolute;
   bottom: 0;
-  background-color:rgba(255, 255,255, 0.8);
+  background-color:rgba(255, 255,255, 0.96);
   padding: 5rpx 10rpx 8rpx 15rpx;
   font-size: 24rpx;
   display: flex;

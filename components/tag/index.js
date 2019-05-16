@@ -1,28 +1,28 @@
-// components/book/index.js
+// components/tag/index.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    book: Object
+    text: String
   },
-  attached() {
-    
+  options: {
+    multipleSlots: true
   },
   /**
    * 组件的初始数据
    */
   data: {
+
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    onTap() {
-      const bid = this.properties.book.id
-      wx.navigateTo({
-        url: `/pages/book-detail/book-detail?bid=${bid}`
+    onTap(event){
+      this.triggerEvent('tapping',{
+        text:this.properties.text
       })
     }
   }

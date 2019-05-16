@@ -1,5 +1,4 @@
 .contianer {
-  width: 100%;
   width: 600rpx;
   height: 80rpx;
   display: inline-flex;
