@@ -1,1 +1,54 @@
-/* pages/my/my.wxss */
+.bg {
+  width: 750rpx;
+  height: 574rpx;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.about-container {
+  padding: 0 100rpx;
+  width: 500rpx;
+  position: absolute;
+  top: 400rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  overflow: hidden; 
+}
+.avatar-position {
+  position: absolute;
+  top: 255rpx;
+}
+.avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 26rpx;
+}
+.about-us image {
+  width: 34rpx;
+  height: 34rpx;
+}
+.about-us{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+.description{
+  font-size:24rpx;
+  color:#999999;
+}
+.preview{
+  margin-bottom: 30rpx;
+}
+.about-container > view:nth-child(2){
+  margin-top: -5rpx;
+}
